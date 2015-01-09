@@ -1,0 +1,7 @@
+/target/
+/.settings/
+
+/src/main/resources/database/database.properties
+/src/main/resources/cloud/cloud.properties
+
+
