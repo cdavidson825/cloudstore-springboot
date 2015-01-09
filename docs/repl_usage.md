@@ -1,10 +1,10 @@
 
 ## REPL Usage:  `scripts/repl.sh`
 
-* `Cloudstore repl > -help`
+* `Cloudstore repl > --help`
 <pre>
 CommandResponse [responseStatus=true
-command = -help
+command = --help
 response =
 Option                Description
 -?, --help            show help
@@ -23,33 +23,33 @@ Option                Description
 ]
 </pre>
 
-* `Cloudstore repl > -save_data foobar -local_file README.md`
+* `Cloudstore repl > --save_data foobar -local_file README.md`
 <pre>
 CommandResponse [responseStatus=true
-command = -save_data readme -local_file README.md
+command = --save_data readme -local_file README.md
 response =
 Data saved with response code: true]
 </pre>
 
-* `Cloudstore repl > -get_local_keys`
+* `Cloudstore repl > --get_local_keys`
 <pre>
 CommandResponse [responseStatus=true
-command = -get_local_keys
+command = --get_local_keys
 response =
-******* Local Key List *******
 dbId: 5 -- InternalID: readme, ExternalContainer: cloudstore-sb, ExternalID: cd28287b-1140-4983-a7df-0ce03df98192
 ]
+</pre>
 
-* `Cloudstore repl > -get_cloud_keys`
+* `Cloudstore repl > --get_cloud_keys`
 <pre>
 ******* Cloud Key List *******
 cd28287b-1140-4983-a7df-0ce03df98192
 ]
 </pre>
 
-* `Cloudstore repl > -get_local_metadata readme`
-<pre
-******* Getting Local Metadata for key: readme *******
+* `Cloudstore repl > --get_local_metadata readme`
+<pre>
+Getting Local Metadata for key: readme
 StorageMetadata:
 createDate=2015-01-09 13:06:35.504
 smId=5
@@ -65,12 +65,12 @@ owner=anonUser
 ]
 </pre>
 
-* `Cloudstore repl > -get_cloud_metadata cd28287b-1140-4983-a7df-0ce03df98192`
+* `Cloudstore repl > --get_cloud_metadata cd28287b-1140-4983-a7df-0ce03df98192`
 <pre>
 CommandResponse [responseStatus=true
-command = -get_cloud_metadata cd28287b-1140-4983-a7df-0ce03df98192
+command = --get_cloud_metadata cd28287b-1140-4983-a7df-0ce03df98192
 response =
-******* Getting Cloud Metadata for key: cd28287b-1140-4983-a7df-0ce03df98192 *******
+Getting Cloud Metadata for key: cd28287b-1140-4983-a7df-0ce03df98192 
 key: Accept-Ranges  value: bytes
 key: ETag   value: 5a8ff383b6a1d9ad28c470132ab48721
 key: Last-Modified  value: Fri Jan 09 13:06:36 EST 2015
@@ -79,7 +79,7 @@ key: Content-Type   value: application/octet-stream
 ]
 </pre>
 
-* `Cloudstore repl > -get_data readme -local_file foobar`
+* `Cloudstore repl > --get_data readme -local_file foobar`
 <pre>
 still need to implement.
 </pre>

@@ -41,39 +41,19 @@ Note: you can swap out local databases very easily, but the current configuratio
 
 ### Run standalone client REPL.
 * `scripts/repl.sh `
-<pre>
-StoreIt repl > -help
-CommandResponse [responseStatus=true, response=
-Option                Description
--?, --help            show help
---delete              Delete data for provided ID
---get                 Get data for provided ID --local_path
-                        required to indicate local output
-                        fully-qualified file location
---get_cloud_keys      Get ALL keys stored in the cloud
---get_cloud_metadata  Get cloud metadata for provided ID
---get_local_keys      Get ALL keys stored locally
---get_local_metadata  Get local metadata for provided ID
---local_path
---save                Save data at provided ID --local_path
-                        required to indicate local input
-                        fully-qualified file location
-, command=-help]
-...
-StoreIt repl >
-</pre>
 REPL usage examples:
 <pre>
-StoreIt repl > --get_local_keys 
-StoreIt repl > --get_local_metadata LOCAL_ID
-StoreIt repl > --get_cloud_keys 
-StoreIt repl > --get_cloud_metadata CLOUD_ID
-StoreIt repl > --get CLOUD_ID --local_path PATH_TO_FILE
-StoreIt repl > --save CLOUD_ID --local_path PATH_TO_FILE
-StoreIt repl > --delete CLOUD_ID
+Cloudstore repl > --help 
+Cloudstore repl > --get_local_keys 
+Cloudstore repl > --get_local_metadata LOCAL_ID
+Cloudstore repl > --get_cloud_keys 
+Cloudstore repl > --get_cloud_metadata CLOUD_ID
+Cloudstore repl > --get_data LOCAL_ID --local_file LOCAL_FILE
+Cloudstore repl > --save LOCAL_ID --local_file LOCAL_FILE
+Cloudstore repl > --delete LOCAL_ID
  </pre>
  
- ####For additional REPL usage/examples: [here](docs/repl_usage.md) 
+####For additional REPL usage/examples: [here](docs/repl_usage.md) 
 
 ### Startup the local Cloudstore app with skeleton REST endpoints and client REPL.
 * `scripts/boot_dev.sh `
