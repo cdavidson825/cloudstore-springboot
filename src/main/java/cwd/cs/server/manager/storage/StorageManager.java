@@ -25,7 +25,7 @@ public interface StorageManager
   * @return true if the delete was successful. false if there was an error or
   *         the key did not exist.
   */
-//    public boolean deleteData(String key);
+  public boolean deleteData(String key);
 
     
 }

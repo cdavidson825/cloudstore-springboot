@@ -180,6 +180,13 @@ public class StorageMetadata
         setLastModifiedDate(new Timestamp(System.currentTimeMillis()));
         
     }
+    public String summary()
+    {
+        return(String.format(
+                "dbId: %s -- InternalID: %s, ExternalContainer: %s, ExternalID: %s",
+                String.valueOf(getSmId()), getInternalId(),
+                getExternalContainer(), getExternalId()));
+    }
 
     @Override
     public String toString()

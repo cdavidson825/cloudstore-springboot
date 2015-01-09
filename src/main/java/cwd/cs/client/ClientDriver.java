@@ -18,7 +18,7 @@ public class ClientDriver
 {
     protected static final List<String> QUIT_COMMANDS = Arrays.asList("QUIT", "EXIT", "Q", "BYE",
             "GOODBYE");
-    protected static final String COMMAND_PROMPT = "StoreIt repl > ";
+    protected static final String COMMAND_PROMPT = "Cloudstore repl > ";
     @Autowired
     private CommandProcessor commandProcessor;
 

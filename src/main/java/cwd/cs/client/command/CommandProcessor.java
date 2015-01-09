@@ -26,10 +26,10 @@ public class CommandProcessor
     protected final static String GET_CLOUD_KEYS_CMD = "get_cloud_keys";
     protected final static String GET_LOCAL_METADATA_CMD = "get_local_metadata";
     protected final static String GET_CLOUD_METADATA_CMD = "get_cloud_metadata";
-    protected final static String SAVE_CMD = "save";
-    protected final static String GET_CMD = "get";
+    protected final static String SAVE_CMD = "save_data";
+    protected final static String GET_CMD = "get_data";
     protected final static String DELETE_CMD = "delete";
-    protected final static String LOCAL_PATH_OPTION = "local_path";
+    protected final static String LOCAL_FILE_OPTION = "local_file";
 
     @Autowired
     private StorageManager storageManager = null;
@@ -58,15 +58,15 @@ public class CommandProcessor
         optionsParser
                 .accepts(
                         SAVE_CMD,
-                        "Save data at provided ID --local_path required to indicate local input fully-qualified file location  ")
+                        "Save data at provided ID --local_file required to indicate local input fully-qualified file location  ")
                 .withRequiredArg();
         optionsParser
                 .accepts(
                         GET_CMD,
-                        "Get data for provided ID --local_path required to indicate local output fully-qualified file location")
+                        "Get data for provided ID --local_file required to indicate local output fully-qualified file location")
                 .withRequiredArg();
         optionsParser.accepts(DELETE_CMD, "Delete data for provided ID").withRequiredArg();
-        optionsParser.accepts(LOCAL_PATH_OPTION).withRequiredArg();
+        optionsParser.accepts(LOCAL_FILE_OPTION).withRequiredArg();
         optionsParser.acceptsAll(Arrays.asList("help", "?"), "show help").forHelp();
 
         /*
@@ -111,12 +111,11 @@ public class CommandProcessor
         }
         else if (options.has(GET_CMD))
         {
-            response = new CommandResponse(false, "Get Not implemented yet...");
-
+            response = DataCommand.getData(retrievalManager, options);
         }
         else if (options.has(DELETE_CMD))
         {
-            response = new CommandResponse(false, "Delete Not implemented yet...");
+            response = DataCommand.deleteData(storageManager, options);
         }
         else if (options.has("help") || options.has("?"))
         {

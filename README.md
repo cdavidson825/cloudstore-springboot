@@ -72,6 +72,8 @@ StoreIt repl > --get CLOUD_ID --local_path PATH_TO_FILE
 StoreIt repl > --save CLOUD_ID --local_path PATH_TO_FILE
 StoreIt repl > --delete CLOUD_ID
  </pre>
+ 
+ ####For additional REPL usage/examples: [here](docs/repl_usage.md) 
 
 ### Startup the local Cloudstore app with skeleton REST endpoints and client REPL.
 * `scripts/boot_dev.sh `

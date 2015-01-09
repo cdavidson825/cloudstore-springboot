@@ -166,6 +166,35 @@ public class StorageManagerImpl extends ServiceManager implements StorageManager
         }
         return (storageData);
     }
+    
+    @Override
+    public boolean deleteData(String internalIdentifier)
+    {
+        boolean deletedData = false;
+        if (isAuthenticatedUser())
+        {
+            if (internalIdentifier != null)
+            {
+                StorageMetadata metadata = metadataRepo.findByInternalId(internalIdentifier);
+                if (metadata != null)
+                {
+                    deletedData = cloudService.deleteData(metadata
+                            .getExternalId());
+                    metadataRepo.delete(metadata.getSmId());
+                }
+                else
+                {
+                    log.warn("Could not find persisted metadata for internalIdentifier = "
+                            + internalIdentifier);
+                }
+            }
+            else
+            {
+                log.warn("deleteData -- invalid input internalIdentifier is null");
+            }
+        }
+        return (deletedData);
+    }
 
     /*
      * Method to determine if the data should be encrypted based on the DataPreferences. By default,

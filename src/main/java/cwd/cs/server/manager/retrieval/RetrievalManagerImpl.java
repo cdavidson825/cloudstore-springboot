@@ -37,12 +37,12 @@ public class RetrievalManagerImpl extends ServiceManager implements RetrievalMan
     @Autowired
     CloudService cloudService;
 
-    
+
     public RetrievalManagerImpl()
     {
         this(new UserSuppliedCredentials("anonUser", "bogus"));
     }
-    
+
     public RetrievalManagerImpl(UserSuppliedCredentials userSuppliedCreds)
     {
         super(userSuppliedCreds);
@@ -62,29 +62,29 @@ public class RetrievalManagerImpl extends ServiceManager implements RetrievalMan
 
                     if (metadata != null)
                     {
-                        CloudData cloudData = cloudService.getData(metadata
-                                .getExternalId());
+                        CloudData cloudData = cloudService.getData(metadata.getExternalId());
 
                         returnData = cloudData.getData();
                         log.debug("CloudData -- metadata = " + metadata);
 
                         if (returnData != null)
                         {
-                            String generatedExternalHashcode = HashUtil
-                            .generateSHA1HashCode(returnData);
+                            String generatedExternalHashcode =
+                                    HashUtil.generateSHA1HashCode(returnData);
                             /*
-                             * verify the saved and generated external hashcodes match. This
-                             * method logs errors if they don't.
+                             * verify the saved and generated external hashcodes match. This method
+                             * logs errors if they don't.
                              */
                             log.info("Verifying external hash.");
                             HashUtil.verifyHashCode(metadata.getExternalHashCode(),
                                     generatedExternalHashcode);
-                            
+
                             if (metadata.getIsEncrypted())
                             {
                                 log.info("Decrypting data.");
-                                returnData = keyManager
-                                        .decryptData(metadata.getKeyMetadata(), returnData);
+                                returnData =
+                                        keyManager.decryptData(metadata.getKeyMetadata(),
+                                                returnData);
                             }
 
                             if (metadata.getIsCompressed())
@@ -92,11 +92,11 @@ public class RetrievalManagerImpl extends ServiceManager implements RetrievalMan
                                 log.info("Decompressing data.");
                                 returnData = GzipUtil.decompress(returnData);
                             }
-                            String generatedInternalHashcode = HashUtil
-                                    .generateSHA1HashCode(returnData);
+                            String generatedInternalHashcode =
+                                    HashUtil.generateSHA1HashCode(returnData);
                             /*
-                             * verify the saved and generated internal hashcodes match. This
-                             * method logs errors if they don't.
+                             * verify the saved and generated internal hashcodes match. This method
+                             * logs errors if they don't.
                              */
                             log.info("Verifying internal hash.");
                             HashUtil.verifyHashCode(metadata.getInternalHashCode(),
@@ -109,8 +109,7 @@ public class RetrievalManagerImpl extends ServiceManager implements RetrievalMan
                     }
                     else
                     {
-                        log.error("Could not find metadata for internalId = "
-                                        + key);
+                        log.error("Could not find metadata for internalId = " + key);
                     }
                 }
                 else
@@ -160,21 +159,21 @@ public class RetrievalManagerImpl extends ServiceManager implements RetrievalMan
             log.info(String.format("getLocalKeys Found %d records", metadataCollection.size()));
             for (StorageMetadata metadata : metadataCollection)
             {
-                localKeyList.add(String.valueOf(metadata.getSmId()));
+                localKeyList.add(metadata.summary());
             }
         }
         return localKeyList;
     }
 
     @Override
-    public String getLocalMetadata(String localKey)
+    public String getLocalMetadata(String localId)
     {
         String metadataString = null;
         if (isAuthenticatedUser())
         {
-            if (localKey != null)
+            if (localId != null)
             {
-                StorageMetadata metadata = metadataRepo.findOne(Long.valueOf(localKey));
+                StorageMetadata metadata = metadataRepo.findByInternalId(localId);
                 if (metadata != null)
                 {
                     metadataString = metadata.toString();
