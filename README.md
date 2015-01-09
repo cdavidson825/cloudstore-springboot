@@ -79,13 +79,6 @@ StoreIt repl > --delete CLOUD_ID
 * `scripts/boot_dev.sh `
 <pre>
 ...
-   ____   _                       _   ____    _                         
-  / ___| | |   ___    _   _    __| | / ___|  | |_    ___    _ __    ___ 
- | |     | |  / _ \  | | | |  / _` | \___ \  | __|  / _ \  | '__|  / _ \
- | |___  | | | (_) | | |_| | | (_| |  ___) | | |_  | (_) | | |    |  __/
-  \____| |_|  \___/   \__,_|  \__,_| |____/   \__|  \___/  |_|     \___|
-                                                                        
-...
 [main] - [cwd.cs.StoreItApp]- Started StoreItApp in 25.299 seconds (JVM running for 25.552)
 StoreIt repl >
 </pre>
