@@ -81,7 +81,16 @@ key: Content-Type   value: application/octet-stream
 
 * `Cloudstore repl > --get_data readme -local_file foobar`
 <pre>
-still need to implement.
+Cloudstore repl > --get_data readme --local_file foobar
+2015-01-10 16:05:39,627 INFO  [main] - [cwd.cs.server.manager.retrieval.RetrievalManagerImpl]- Verifying external hash.
+2015-01-10 16:05:39,628 INFO  [main] - [cwd.cs.server.manager.retrieval.RetrievalManagerImpl]- Decrypting data.
+2015-01-10 16:05:39,629 INFO  [main] - [cwd.cs.server.manager.retrieval.RetrievalManagerImpl]- Decompressing data.
+2015-01-10 16:05:39,631 INFO  [main] - [cwd.cs.server.manager.retrieval.RetrievalManagerImpl]- Verifying internal hash.
+CommandResponse [responseStatus=true
+command = --get_data readme --local_file foobar
+response =
+Data retrived and stored at foobar]
+Cloudstore repl >
 </pre>
 
 

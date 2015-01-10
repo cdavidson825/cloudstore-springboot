@@ -42,7 +42,7 @@ public class ClientDriver
                 }
                 catch (Exception e)
                 {
-                    System.out.println("caught exception: "+ e.getMessage());
+                    e.printStackTrace();
                     System.out.println("printing --help");
                     response = execute(new String[] {"--help"});
                 }

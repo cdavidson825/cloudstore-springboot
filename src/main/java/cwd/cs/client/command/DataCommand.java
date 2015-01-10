@@ -93,12 +93,12 @@ public class DataCommand
             {
                 byte[] dataBytes = retrievalManager.getData(localKey);
                 Files.write(dataBytes, new File(localPath));
-                response = new CommandResponse(true, "Data retrived and stored at " + localPath);
+                response = new CommandResponse(true, "Data retrieved and stored at " + localPath);
 
             }
             catch (IOException e)
             {
-                log.error("Caught the following exception while saving", e);
+                log.error("Caught the following exception while getting objec identified locall as: " + localKey, e);
                 response = new CommandResponse(false, "Caught exception while saving");
             }
         }

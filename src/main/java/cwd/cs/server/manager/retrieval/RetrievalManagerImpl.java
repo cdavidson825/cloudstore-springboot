@@ -49,16 +49,16 @@ public class RetrievalManagerImpl extends ServiceManager implements RetrievalMan
     }
 
     @Override
-    public byte[] getData(String key)
+    public byte[] getData(String internalID)
     {
         {
             byte[] returnData = null;
 
             if (isAuthenticatedUser())
             {
-                if (key != null)
+                if (internalID != null)
                 {
-                    StorageMetadata metadata = metadataRepo.findOne(Long.valueOf(key));
+                    StorageMetadata metadata = metadataRepo.findByInternalId(internalID);
 
                     if (metadata != null)
                     {
@@ -104,12 +104,12 @@ public class RetrievalManagerImpl extends ServiceManager implements RetrievalMan
                         }
                         else
                         {
-                            log.warn("getData -- no data returned for key " + key);
+                            log.warn("getData -- no data returned for key " + internalID);
                         }
                     }
                     else
                     {
-                        log.error("Could not find metadata for internalId = " + key);
+                        log.error("Could not find metadata for internalId = " + internalID);
                     }
                 }
                 else

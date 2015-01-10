@@ -25,7 +25,7 @@ public class AnonAuthenticationService implements AuthenticationService
         {
             authenticated = true;
         }
-        log.info("Anon authenticator Received login request for " + userCredentials
+        log.debug("Anon authenticator Received login request for " + userCredentials
                 + " --> authenticated = " + authenticated);
         return authenticated;
     }
