@@ -43,14 +43,14 @@ Note: you can swap out local databases very easily, but the current configuratio
 * `scripts/repl.sh `
 REPL usage examples:
 <pre>
-Cloudstore repl > --help 
-Cloudstore repl > --get_local_keys 
-Cloudstore repl > --get_local_metadata LOCAL_ID
-Cloudstore repl > --get_cloud_keys 
-Cloudstore repl > --get_cloud_metadata CLOUD_ID
-Cloudstore repl > --get_data LOCAL_ID --local_file LOCAL_FILE
-Cloudstore repl > --save_data LOCAL_ID --local_file LOCAL_FILE
-Cloudstore repl > --delete LOCAL_ID
+CloudStore> --help 
+CloudStore> --get_local_keys 
+CloudStore> --get_local_metadata LOCAL_ID
+CloudStore> --get_cloud_keys 
+CloudStore> --get_cloud_metadata CLOUD_ID
+CloudStore> --get_data LOCAL_ID --local_file LOCAL_FILE
+CloudStore> --save_data LOCAL_ID --local_file LOCAL_FILE
+CloudStore> --delete LOCAL_ID
  </pre>
  
 ####For additional REPL usage/examples: [here](docs/repl_usage.md) 
@@ -59,10 +59,10 @@ Cloudstore repl > --delete LOCAL_ID
 * `scripts/boot_dev.sh `
 <pre>
 ...
-[main] - [cwd.cs.StoreItApp]- Started StoreItApp in 25.299 seconds (JVM running for 25.552)
-StoreIt repl >
+[main] - [cwd.cs.CloudStoreApp]- Started StoreItApp in 25.299 seconds (JVM running for 25.552)
+CloudStore>
 </pre>
-#### To get all metadata: http://localhost:8080/cloudstore/
-#### To get metadata for given `local_id` : http://localhost:8080/cloudstore/get/local_id
+* To get all metadata: http://localhost:8080/cloudstore/
+* To get metadata for given `local_id` : http://localhost:8080/cloudstore/get/local_id
 
 

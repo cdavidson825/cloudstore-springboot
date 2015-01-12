@@ -1,7 +1,7 @@
 
 ## REPL Usage:  `scripts/repl.sh`
 
-* `Cloudstore repl > --help`
+* `CloudStore> --help`
 <pre>
 CommandResponse [responseStatus=true
 command = --help
@@ -21,33 +21,37 @@ Option                Description
                         required to indicate local input
                         fully-qualified file location
 ]
+CloudStore>
 </pre>
 
-* `Cloudstore repl > --save_data foobar -local_file README.md`
+* `CloudStore> --save_data foobar -local_file README.md`
 <pre>
 CommandResponse [responseStatus=true
 command = --save_data readme -local_file README.md
 response =
 Data saved with response code: true]
+CloudStore>
 </pre>
 
-* `Cloudstore repl > --get_local_keys`
+* `CloudStore> --get_local_keys`
 <pre>
 CommandResponse [responseStatus=true
 command = --get_local_keys
 response =
 dbId: 5 -- InternalID: readme, ExternalContainer: cloudstore-sb, ExternalID: cd28287b-1140-4983-a7df-0ce03df98192
 ]
+CloudStore>
 </pre>
 
-* `Cloudstore repl > --get_cloud_keys`
+* `CloudStore> --get_cloud_keys`
 <pre>
 ******* Cloud Key List *******
 cd28287b-1140-4983-a7df-0ce03df98192
 ]
+CloudStore>
 </pre>
 
-* `Cloudstore repl > --get_local_metadata readme`
+* `CloudStore> --get_local_metadata readme`
 <pre>
 Getting Local Metadata for key: readme
 StorageMetadata:
@@ -63,9 +67,10 @@ isEncrypted=true
 lastModifiedDate=null
 owner=anonUser
 ]
+CloudStore>
 </pre>
 
-* `Cloudstore repl > --get_cloud_metadata cd28287b-1140-4983-a7df-0ce03df98192`
+* `CloudStore> --get_cloud_metadata cd28287b-1140-4983-a7df-0ce03df98192`
 <pre>
 CommandResponse [responseStatus=true
 command = --get_cloud_metadata cd28287b-1140-4983-a7df-0ce03df98192
@@ -77,11 +82,11 @@ key: Last-Modified  value: Fri Jan 09 13:06:36 EST 2015
 key: Content-Length value: 1936
 key: Content-Type   value: application/octet-stream
 ]
+CloudStore>
 </pre>
 
-* `Cloudstore repl > --get_data readme -local_file foobar`
+* `CloudStore> --get_data readme -local_file foobar`
 <pre>
-Cloudstore repl > --get_data readme --local_file foobar
 2015-01-10 16:05:39,627 INFO  [main] - [cwd.cs.server.manager.retrieval.RetrievalManagerImpl]- Verifying external hash.
 2015-01-10 16:05:39,628 INFO  [main] - [cwd.cs.server.manager.retrieval.RetrievalManagerImpl]- Decrypting data.
 2015-01-10 16:05:39,629 INFO  [main] - [cwd.cs.server.manager.retrieval.RetrievalManagerImpl]- Decompressing data.
@@ -90,7 +95,7 @@ CommandResponse [responseStatus=true
 command = --get_data readme --local_file foobar
 response =
 Data retrived and stored at foobar]
-Cloudstore repl >
+CloudStore>
 </pre>
 
 
