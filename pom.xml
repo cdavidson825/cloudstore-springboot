@@ -12,7 +12,7 @@
     <version>0.1.0-SNAPSHOT</version>
     
     <properties>
-        <start-class>cwd.cs.StoreItApp</start-class>
+        <start-class>cwd.cs.CloudStoreApp</start-class>
         <java.version>1.8</java.version>
         <hamcrest.version>1.3</hamcrest.version>
         <guava.version>18.0</guava.version>

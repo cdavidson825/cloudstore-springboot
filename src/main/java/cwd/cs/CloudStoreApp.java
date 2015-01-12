@@ -9,13 +9,13 @@ import cwd.cs.client.ClientDriver;
 
 @SpringBootApplication
 @ImportResource("classpath:/spring-config.xml")
-public class StoreItApp {
+public class CloudStoreApp {
     
     private static ApplicationContext springContext;
    
     protected static void setSpringContext(ApplicationContext springContext)
     {
-        StoreItApp.springContext = springContext;
+        CloudStoreApp.springContext = springContext;
     }
     
     public static ApplicationContext getSpringContext()
@@ -24,11 +24,11 @@ public class StoreItApp {
     }       
 
     public static void main(String[] args) {
-        ApplicationContext ctx = SpringApplication.run(StoreItApp.class, args);
+        ApplicationContext ctx = SpringApplication.run(CloudStoreApp.class, args);
         setSpringContext(ctx);
         
         //Set spring context so other beans can get it if needed.
-        StoreItApp.setSpringContext(ctx);
+        CloudStoreApp.setSpringContext(ctx);
         
         //Start client repl so you can interact with the database from the cmd-line.
         ClientDriver client = ctx.getBean(ClientDriver.class);

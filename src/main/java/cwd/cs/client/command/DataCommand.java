@@ -98,8 +98,8 @@ public class DataCommand
             }
             catch (IOException e)
             {
-                log.error("Caught the following exception while getting objec identified locall as: " + localKey, e);
-                response = new CommandResponse(false, "Caught exception while saving");
+                log.error("Caught the following exception while getting object identified locally as: " + localKey, e);
+                response = new CommandResponse(false, "Caught exception while getting object");
             }
         }
 

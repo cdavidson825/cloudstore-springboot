@@ -1,7 +1,7 @@
 # Cloudstore SpringBoot demo app
 
 ## Overview
-Cloudstore is a SpringBoot demo (i.e. demo/non-production/non-secure/etc...) app that allows a client/user to store data (blobs) in Amazon S3 (and coming soon Microsoft Azure).  The data stored in the Cloud provider is encrypted with crypto info stored in a local database (currently H2).  In addition to crypto info, the local database also stores the internal & external identifiers, hash codes valiation, compression, etc. Cloudstore provides simple CRUD operations to data stored in the cloud provider via a client REPL and a skeleton REST interface (which is currently incomplete).
+Cloudstore is a SpringBoot demo (i.e. demo/non-production/non-secure/etc...) app that allows a client/user to store data (blobs) in Amazon S3 (and coming soon Microsoft Azure).  The data stored in the Cloud provider is encrypted with crypto info stored in a local database (currently H2).  In addition to crypto info, the local database also stores the internal & external identifiers, hash codes valiation, compression, etc. Cloudstore provides simple CRUD operations to data stored in the cloud provider via a client REPL and a skeleton REST interface (which currently only supports GETs -- There is no way to save/delete from the REST interface).
 
 ### Next steps (maybe).
 1. Finish the REST interface and make it useful.
@@ -49,18 +49,20 @@ Cloudstore repl > --get_local_metadata LOCAL_ID
 Cloudstore repl > --get_cloud_keys 
 Cloudstore repl > --get_cloud_metadata CLOUD_ID
 Cloudstore repl > --get_data LOCAL_ID --local_file LOCAL_FILE
-Cloudstore repl > --save LOCAL_ID --local_file LOCAL_FILE
+Cloudstore repl > --save_data LOCAL_ID --local_file LOCAL_FILE
 Cloudstore repl > --delete LOCAL_ID
  </pre>
  
 ####For additional REPL usage/examples: [here](docs/repl_usage.md) 
 
-### Startup the local Cloudstore app with skeleton REST endpoints and client REPL.
+### Startup the local Cloudstore app with skeleton "GET" REST endpoints and client REPL.
 * `scripts/boot_dev.sh `
 <pre>
 ...
 [main] - [cwd.cs.StoreItApp]- Started StoreItApp in 25.299 seconds (JVM running for 25.552)
 StoreIt repl >
 </pre>
+#### To get all metadata: http://localhost:8080/cloudstore/
+#### To get metadata for given `local_id` : http://localhost:8080/cloudstore/get/local_id
 
 
