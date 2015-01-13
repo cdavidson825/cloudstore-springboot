@@ -1,19 +1,18 @@
 # Cloudstore SpringBoot demo app
 
 ## Overview
-Cloudstore is a SpringBoot demo (i.e. demo/non-production/non-secure/etc...) app that allows a client/user to store data (blobs) in Amazon S3 (and coming soon Microsoft Azure).  The data stored in the Cloud provider is encrypted with crypto info stored in a local database (currently H2).  In addition to crypto info, the local database also stores the internal & external identifiers, hash codes valiation, compression, etc. Cloudstore provides simple CRUD operations to data stored in the cloud provider via a client REPL and a skeleton REST interface (which currently only supports GETs -- There is no way to save/delete from the REST interface).
+Cloudstore is a SpringBoot demo (i.e. demo/non-production/non-secure/etc...) app that allows a client/user to store data (blobs) in Amazon S3 (and coming soon Microsoft Azure).  The data stored in the Cloud provider is encrypted with crypto info stored in a local database (currently H2).  In addition to crypto info, the local database also stores the internal & external identifiers, hash codes valiation, compression, etc. Cloudstore provides simple CRUD operations to data stored in the cloud provider via a client REPL and a skeleton REST interface (which currently only supports GETs -- There is no way to save/get from the REST interface).
 
-### Next steps (maybe).
-1. Finish the REST interface and make it useful.
-2. Storage in Microsoft Azure (http://azure.microsoft.com/en-us/documentation/articles/storage-java-how-to-use-blob-storage/)
-3. Local database encryption using a master-key.
-4. Fix scripts path issue -- currently must run scripts as ./script/<script_name> do to relative path of pom and target.
+### Known Issues ( https://github.com/cdavidson825/cloudstore-springboot/issues/ )
+* Storage in Microsoft Azure (http://azure.microsoft.com/en-us/documentation/articles/storage-java-how-to-use-blob-storage/) Issue #7
+* The REST API is not complete. Issue #5
+* The REPL doesn't support up-arrow command history.  Issue #4
+* Fix scripts path issue -- currently must run scripts as ./script/<script_name> do to relative path of pom and target. Issue #6
 
-### Lame alerts (i.e. places where this app is non-production/non-secure)
-1. The UserCredentials are very simplistic and are just enough to make this thing work for a local app.
-2. The crypto algorithm is not industry strength.  A production app should do something better.
-3. The local database is not encrypted.  Still working on this...
-4. The REST API is not complete. Still working on this...
+### Why not production ready (yet)?
+* The UserCredentials are very simplistic and are just enough to make this thing work for a local app. Issue #2
+* The crypto algorithm (128-bit ASE) is not industry strength. Issue #3
+* The local database is not encrypted.  Issue #1
 
 ## Prerequisites
 ### Local H2 database (for local crypto key info).
@@ -62,7 +61,8 @@ CloudStore> --delete LOCAL_ID
 [main] - [cwd.cs.CloudStoreApp]- Started StoreItApp in 25.299 seconds (JVM running for 25.552)
 CloudStore>
 </pre>
-* To get all metadata: http://localhost:8080/cloudstore/
-* To get metadata for given `local_id` : http://localhost:8080/cloudstore/get/local_id
+* To get all metadata (HTTP GET): http://localhost:8080/cloudstore/
+* To get metadata for given `local_id` (HTTP GET) : http://localhost:8080/cloudstore/get_meta/local_id
+* To delete record for given `local_id` (HTTP DELETE) : http://localhost:8080/cloudstore/delete/local_id
 
 

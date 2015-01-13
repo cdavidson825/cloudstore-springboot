@@ -8,5 +8,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration("classpath:spring-config.xml")
 public class SpringEnabledTest
 {
+    
+    public SpringEnabledTest()
+    {
+        //Set the test profile so the test objects get mocked in.
+        System.setProperty("spring.profiles.active", "test");
+    }
 
 }
