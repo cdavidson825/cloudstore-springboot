@@ -29,7 +29,7 @@ CloudStore>
 CommandResponse [responseStatus=true
 command = --save_data readme -local_file README.md
 response =
-Data saved with response code: true]
+Data saved with metadata: dbId: 9 -- InternalID: readme, ExternalContainer: cloudstore-sb, ExternalID: cf4a5ba0-6c65-4154-9546-c946d8068561]
 CloudStore>
 </pre>
 

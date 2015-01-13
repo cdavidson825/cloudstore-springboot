@@ -16,6 +16,7 @@ import com.google.common.io.Files;
 
 import cwd.cs.server.manager.retrieval.RetrievalManager;
 import cwd.cs.server.manager.storage.StorageManager;
+import cwd.cs.server.model.StorageMetadata;
 
 public class DataCommand
 {
@@ -57,8 +58,8 @@ public class DataCommand
                                 + MAX_UPLOAD_BYTES + "  bytes.  Your file is "
                                 + inputFileContent.length + " bytes"); }
 
-                boolean saved = storageManager.saveData(localKey, inputFileContent);
-                response = new CommandResponse(saved, "Data saved with response code: " + saved);
+                StorageMetadata storageMetadata = storageManager.saveData(localKey, inputFileContent);
+                response = new CommandResponse(true, "Data saved with metadata: " + storageMetadata.summary());
             }
             catch (IOException e)
             {

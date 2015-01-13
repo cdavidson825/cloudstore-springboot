@@ -62,9 +62,9 @@ public class StorageManagerImpl extends ServiceManager implements StorageManager
     }
 
     @Override
-    public boolean saveData(String key, byte[] data)
+    public StorageMetadata saveData(String key, byte[] data)
     {
-        boolean dataSaved = false;
+        StorageMetadata savedMetadata = null;
 
         if (isAuthenticatedUser())
         {
@@ -79,24 +79,20 @@ public class StorageManagerImpl extends ServiceManager implements StorageManager
                     String dataLocation = cloudService.saveData(cdnData);
 
                     metadata.setExternalContainer(dataLocation);
-                    metadataRepo.save(metadata);
-
-                    dataSaved = true;
+                    savedMetadata = metadataRepo.save(metadata);
                 }
                 else
                 {
                     log.error("CDNData or metadata object not created.  No save will occur.  CDNdata = "
                             + cdnData + "  metadata = " + metadata);
-                    dataSaved = false;
                 }
             }
             else
             {
                 log.error("StorageData object is null, no data will be saved");
-                dataSaved = false;
             }
         }
-        return dataSaved;
+        return savedMetadata;
     }
 
     /*

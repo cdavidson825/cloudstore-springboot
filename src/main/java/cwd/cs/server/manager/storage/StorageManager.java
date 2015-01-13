@@ -1,5 +1,7 @@
 package cwd.cs.server.manager.storage;
 
+import cwd.cs.server.model.StorageMetadata;
+
 public interface StorageManager
 {
     /**
@@ -12,10 +14,9 @@ public interface StorageManager
      *            the unique key of the data to be inserted or updated
      * @param data
      *            the data to be inserted/updated
-     * @return true if the data was successfully inserted or updated, false
-     *         otherwise.
+     * @return StorageMetadata associated with the stored object..
      */
-    public boolean saveData(String key, byte[] data);
+    public StorageMetadata saveData(String key, byte[] data);
     
   /**
   * Method to delete data for a given key.

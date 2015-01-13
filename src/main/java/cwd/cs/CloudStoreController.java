@@ -66,22 +66,21 @@ public class CloudStoreController
 
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public boolean saveData(@RequestParam(value = "internalId") String internalId, @RequestParam(
+    public StorageMetadata saveData(@RequestParam(value = "internalId") String internalId, @RequestParam(
             value = "input_file") MultipartFile inputFile)
     {
         System.out.println("Save called for internalID = " + internalId);
 
-        boolean saved;
+        StorageMetadata savedMetadata = null;
         try
         {
-            saved = storageManager.saveData(internalId, inputFile.getBytes());
+            savedMetadata = storageManager.saveData(internalId, inputFile.getBytes());
         }
         catch (IOException e)
         {
             e.printStackTrace();
-            saved = false;
         }
-        return saved;
+        return savedMetadata;
     }
 
     @RequestMapping(value = "/get", method = RequestMethod.POST)
