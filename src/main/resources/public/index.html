@@ -1,0 +1,84 @@
+<html>
+<head>
+<title>CloudStore SpringBoot app</title>
+</head>
+<body>
+	<h1>CloudStore SpringBoot app</h1>
+
+	<table>
+		<tr>
+			<td>
+				<fieldset>
+					<legend>Get All local metadata</legend>
+					<form action="/cloudstore/" method="post">
+						<p />
+						<input type="submit" value="Get ALL metadata" />
+					</form>
+				</fieldset>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<fieldset>
+					<legend>Get local metadata</legend>
+					<form action="/cloudstore/get_meta" method="post">
+						<p>
+							Get metadata for local identifier:<input type="text"
+								name="internalId" size="50" />
+						</p>
+						<input type="submit" value="Get metadata" />
+					</form>
+				</fieldset>
+			</td>
+		</tr>
+		<tr>
+			<td><fieldset>
+					<legend>Save Local File</legend>
+					<form action="/cloudstore/save" method="post"
+						enctype="multipart/form-data">
+						<p>
+							Select a local file to save: <input type="file" name="input_file"
+								size="50" />
+						</p>
+						<p>
+							Local identifier to use when saving file: <input type="text"
+								name="internalId" size="50" />
+						</p>
+						<input type="submit" value="Save Object" />
+					</form>
+				</fieldset></td>
+		</tr>
+		<tr>
+			<td>
+				<fieldset>
+					<legend>Retrieve Cloud object</legend>
+					<form action="/cloudstore/get" method="post">
+						<p>
+							Retrieve Cloud object with local identifier: <input type="text"
+								name="internalId" size="50" />
+						</p>
+						<p>
+							Save local file as: <input type="text" name="saveAs" size="50" />
+						</p>
+						<input type="submit" value="Get Object" />
+					</form>
+				</fieldset>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<fieldset>
+					<legend>Delete Cloud object</legend>
+					<form action="/cloudstore/delete" method="post">
+						<p>
+							Delete Cloud object with local identifier: <input type="text"
+								name="internalId" size="50" />
+						</p>
+						<input type="submit" value="Delete Object" />
+					</form>
+				</fieldset>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

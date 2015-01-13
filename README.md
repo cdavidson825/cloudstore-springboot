@@ -1,11 +1,10 @@
 # Cloudstore SpringBoot demo app
 
 ## Overview
-Cloudstore is a SpringBoot demo (i.e. demo/non-production/non-secure/etc...) app that allows a client/user to store data (blobs) in Amazon S3 (and coming soon Microsoft Azure).  The data stored in the Cloud provider is encrypted with crypto info stored in a local database (currently H2).  In addition to crypto info, the local database also stores the internal & external identifiers, hash codes valiation, compression, etc. Cloudstore provides simple CRUD operations to data stored in the cloud provider via a client REPL and a skeleton REST interface (which currently only supports GETs -- There is no way to save/get from the REST interface).
+Cloudstore is a SpringBoot demo (i.e. demo/non-production/non-secure/etc...) app that allows a client/user to store data (blobs) in Amazon S3 (and coming soon Microsoft Azure).  The data stored in the Cloud provider is encrypted with crypto info stored in a local database (currently H2).  In addition to crypto info, the local database also stores the internal & external identifiers, hash codes validation, compression, etc. Cloudstore provides simple CRUD operations to data stored in the cloud provider via a client REPL and a skeleton REST interface with a very basic html page.
 
 ### Known Issues ( https://github.com/cdavidson825/cloudstore-springboot/issues/ )
 * Storage in Microsoft Azure (http://azure.microsoft.com/en-us/documentation/articles/storage-java-how-to-use-blob-storage/) Issue #7
-* The REST API is not complete. Issue #5
 * The REPL doesn't support up-arrow command history.  Issue #4
 * Fix scripts path issue -- currently must run scripts as ./script/<script_name> do to relative path of pom and target. Issue #6
 
@@ -54,15 +53,20 @@ CloudStore> --delete LOCAL_ID
  
 ####For additional REPL usage/examples: [here](docs/repl_usage.md) 
 
-### Startup the local Cloudstore app with skeleton "GET" REST endpoints and client REPL.
+### Startup the local Cloudstore app with skeleton REST endpoints, simple/crappy HTML page, and client REPL.
 * `scripts/boot_dev.sh `
 <pre>
 ...
 [main] - [cwd.cs.CloudStoreApp]- Started StoreItApp in 25.299 seconds (JVM running for 25.552)
 CloudStore>
 </pre>
+
+####Basic HTML page with Forms for each action
+[http://localhost:8080/](http://localhost:8080/)
+
+####Skeleton REST endpoints
 * To get all metadata (HTTP GET): http://localhost:8080/cloudstore/
 * To get metadata for given `local_id` (HTTP GET) : http://localhost:8080/cloudstore/get_meta/local_id
-* To delete record for given `local_id` (HTTP DELETE) : http://localhost:8080/cloudstore/delete/local_id
-
+* To delete record for given `local_id` (HTTP POST) : http://localhost:8080/cloudstore/delete/local_id
+* Save/Get objects do have endpoints, see the html page above.
 

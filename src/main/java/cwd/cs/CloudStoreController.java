@@ -1,12 +1,18 @@
 package cwd.cs;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.google.common.io.Files;
 
 import cwd.cs.server.manager.retrieval.RetrievalManager;
 import cwd.cs.server.manager.storage.StorageManager;
@@ -24,21 +30,88 @@ public class CloudStoreController
     @Autowired
     RetrievalManager retrievalManager;
 
-    @RequestMapping("/")
+    @RequestMapping(value = "/", method =
+    {RequestMethod.GET, RequestMethod.POST})
     public List<StorageMetadata> listAll()
     {
         return (metadataRepo.findAll());
     }
 
-    @RequestMapping(value = "/get_meta/{internalId}")
-    public StorageMetadata getByInternalId(@PathVariable String internalId)
+    @RequestMapping(value = "/get_meta", method =
+    {RequestMethod.GET, RequestMethod.POST})
+    public StorageMetadata getByInternalIdPost(@RequestParam String internalId)
+    {
+        return (getByInternalId(internalId));
+    }
+
+    @RequestMapping(value = "/get_meta/{internalId}", method = RequestMethod.GET)
+    public StorageMetadata getByInternalIdGet(@PathVariable String internalId)
+    {
+        return (getByInternalId(internalId));
+    }
+
+    @RequestMapping(value = "/delete", method =
+    {RequestMethod.POST, RequestMethod.DELETE})
+    public boolean deleteByInternalIdRequest(@RequestParam String internalId)
+    {
+        return (deleteByInternalId(internalId));
+    }
+
+    @RequestMapping(value = "/delete/{internalId}", method =
+    {RequestMethod.POST, RequestMethod.DELETE})
+    public boolean deleteByInternalIdPathVariable(@PathVariable String internalId)
+    {
+        return (deleteByInternalId(internalId));
+    }
+
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public boolean saveData(@RequestParam(value = "internalId") String internalId, @RequestParam(
+            value = "input_file") MultipartFile inputFile)
+    {
+        System.out.println("Save called for internalID = " + internalId);
+
+        boolean saved;
+        try
+        {
+            saved = storageManager.saveData(internalId, inputFile.getBytes());
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            saved = false;
+        }
+        return saved;
+    }
+
+    @RequestMapping(value = "/get", method = RequestMethod.POST)
+    public String getDataSaveOnServer(@RequestParam(value = "internalId") String internalId,
+            @RequestParam(value = "saveAs") String saveAs)
+    {
+        byte[] dataBytes = retrievalManager.getData(internalId);
+        File file = new File(saveAs);
+        String returnString;
+        try
+        {
+            Files.write(dataBytes, file);
+            returnString = String.format("Your file is stored at: %s", file.getAbsolutePath());
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            returnString = "There was an error saving: " + e.getMessage();
+        }
+        return returnString;
+    }
+
+    private StorageMetadata getByInternalId(String internalId)
     {
         StorageMetadata metadata = metadataRepo.findByInternalId(internalId);
         return metadata;
     }
 
-    @RequestMapping(value = "/delete/{internalId}", method=RequestMethod.DELETE)
-    public boolean deleteByInternalId(@PathVariable String internalId)
+
+    private boolean deleteByInternalId(String internalId)
     {
         return (storageManager.deleteData(internalId));
     }
