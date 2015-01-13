@@ -1,4 +1,4 @@
-package cwd.si.server.cloud.aws;
+package cwd.si.server.cloud;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNotNull;
@@ -13,7 +13,7 @@ import cwd.cs.server.cloud.CloudData;
 import cwd.cs.server.cloud.CloudService;
 import cwd.si.SpringEnabledTest;
 
-public class TestS3MockS3Client extends SpringEnabledTest
+public class TestMockCloudService extends SpringEnabledTest
 {
 
     @Autowired

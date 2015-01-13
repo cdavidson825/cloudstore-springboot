@@ -21,7 +21,7 @@
     </beans>	
 
     <beans profile="test">
-	  <bean id="CloudService" class="cwd.cs.server.cloud.aws.MockS3Client" scope="prototype">
+	  <bean id="CloudService" class="cwd.cs.server.cloud.MockCloudService" scope="prototype">
 	  </bean>
     </beans>	
 

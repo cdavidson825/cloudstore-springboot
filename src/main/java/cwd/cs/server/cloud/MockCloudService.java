@@ -1,14 +1,11 @@
-package cwd.cs.server.cloud.aws;
+package cwd.cs.server.cloud;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import cwd.cs.server.cloud.CloudData;
-import cwd.cs.server.cloud.CloudService;
-
-public class MockS3Client implements CloudService
+public class MockCloudService implements CloudService
 {
     @Override
     public List<String> getKeys()
