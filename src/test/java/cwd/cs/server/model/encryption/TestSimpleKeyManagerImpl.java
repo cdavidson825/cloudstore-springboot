@@ -1,4 +1,4 @@
-package cwd.si.server.model.encryption;
+package cwd.cs.server.model.encryption;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
@@ -8,9 +8,9 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import cwd.cs.SpringEnabledTest;
 import cwd.cs.server.model.StorageMetadata;
 import cwd.cs.server.model.encryption.KeyManager;
-import cwd.si.SpringEnabledTest;
 
 public class TestSimpleKeyManagerImpl extends SpringEnabledTest
 {

@@ -1,4 +1,4 @@
-package cwd.si.server.model;
+package cwd.cs.server.model;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNotNull;
@@ -10,10 +10,10 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 
+import cwd.cs.SpringEnabledTest;
 import cwd.cs.server.model.KeyMetadata;
 import cwd.cs.server.model.StorageMetadata;
 import cwd.cs.server.repository.StorageMetadataRepo;
-import cwd.si.SpringEnabledTest;
 
 @Profile("test")
 public class TestStorageMetadata extends SpringEnabledTest

@@ -1,4 +1,4 @@
-package cwd.si.server.cloud;
+package cwd.cs.server.cloud;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNotNull;
@@ -9,9 +9,9 @@ import java.util.Map;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import cwd.cs.SpringEnabledTest;
 import cwd.cs.server.cloud.CloudData;
 import cwd.cs.server.cloud.CloudService;
-import cwd.si.SpringEnabledTest;
 
 public class TestMockCloudService extends SpringEnabledTest
 {

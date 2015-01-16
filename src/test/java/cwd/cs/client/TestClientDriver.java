@@ -1,11 +1,11 @@
-package cwd.si.client;
+package cwd.cs.client;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import cwd.cs.SpringEnabledTest;
 import cwd.cs.client.ClientDriver;
-import cwd.si.SpringEnabledTest;
 
 @Component
 public class TestClientDriver extends SpringEnabledTest{

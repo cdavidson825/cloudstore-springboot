@@ -1,4 +1,4 @@
-package cwd.si;
+package cwd.cs;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

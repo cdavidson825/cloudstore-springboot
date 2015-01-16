@@ -1,4 +1,4 @@
-package cwd.si.server.cloud;
+package cwd.cs.server.cloud;
 
 
 import static org.hamcrest.Matchers.is;

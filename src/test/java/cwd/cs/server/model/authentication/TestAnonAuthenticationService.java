@@ -1,4 +1,4 @@
-package cwd.si.server.model.authentication;
+package cwd.cs.server.model.authentication;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -10,11 +10,11 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import cwd.cs.SpringEnabledTest;
+import cwd.cs.common.TestUserSuppliedCredentials;
 import cwd.cs.common.UserSuppliedCredentials;
 import cwd.cs.server.model.authentication.AuthenticationService;
 import cwd.cs.server.model.authentication.UserCredentials;
-import cwd.si.SpringEnabledTest;
-import cwd.si.common.TestUserSuppliedCredentials;
 
 public class TestAnonAuthenticationService extends SpringEnabledTest
 {

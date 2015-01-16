@@ -1,4 +1,4 @@
-package cwd.si.common;
+package cwd.cs.common;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNull;

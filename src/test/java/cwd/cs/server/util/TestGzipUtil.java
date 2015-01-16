@@ -1,4 +1,4 @@
-package cwd.si.server.util;
+package cwd.cs.server.util;
 
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
