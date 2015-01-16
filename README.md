@@ -1,10 +1,10 @@
 # Cloudstore SpringBoot demo app
 
 ## Overview
-Cloudstore is a SpringBoot demo (i.e. demo/non-production/non-secure/etc...) app that allows a client/user to store data (blobs) in Amazon S3 (and coming soon Microsoft Azure).  The data stored in the Cloud provider is encrypted with crypto info stored in a local database (currently H2).  In addition to crypto info, the local database also stores the internal & external identifiers, hash codes validation, compression, etc. Cloudstore provides simple CRUD operations to data stored in the cloud provider via a client REPL and a skeleton REST interface with a very basic html page.
+Cloudstore is a SpringBoot demo app that allows a client/user to store data (blobs) in Amazon S3, Google Cloud Storage, and coming soon Microsoft Azure.  The data stored in the Cloud provider (Amazon/Google) is encrypted with crypto info stored in a local database (currently H2).  In addition to crypto info, the local database also stores the internal & external identifiers, hash codes validation, compression, etc. Cloudstore provides simple CRUD operations to data stored in the cloud provider via a client REPL and a skeleton REST interface with a very basic html page.
 
 ### Known Issues ( https://github.com/cdavidson825/cloudstore-springboot/issues/ )
-* Storage in Microsoft Azure (http://azure.microsoft.com/en-us/documentation/articles/storage-java-how-to-use-blob-storage/) Issue #7
+* Storage in Microsoft Azure not implemented yet. (http://azure.microsoft.com/en-us/documentation/articles/storage-java-how-to-use-blob-storage/) Issue #7
 * The REPL doesn't support up-arrow command history.  Issue #4
 * Fix scripts path issue -- currently must run scripts as ./script/<script_name> do to relative path of pom and target. Issue #6
 
@@ -23,8 +23,9 @@ Cloudstore is a SpringBoot demo (i.e. demo/non-production/non-secure/etc...) app
 ## Configuring 
 In order to run Cloudstore, you must copy the cloud and database properties file in place.  These properties have been excluded from the Git repo, but example.properties have been checked in for quick configuration.
 ### Cloud configuration (under src/main/resources/cloud/)
-1. Under src/main/resources/cloud/, copy cloud.example.properties to cloud.properties
-2. In cloud.properties, update the Amazon info for aws.s3.accessKey, aws.s3.secretKey, and aws.s3.bucketName.  These properties values are loaded into the main src/main/resources/cloud/cloud.xml spring configuration file.
+1. Under src/main/resources/cloud/, copy cloud.example.properties to cloud.properties and google_oauth2.example.json to google_oauth2.json
+2. In cloud.properties, update the Amazon/Google key info for your environment.  These properties values are loaded into the main src/main/resources/cloud/cloud.xml spring configuration file.
+3. In google_oauth2.json, update the client_id and client_secret params for your Google Cloud Storage instance.  More documentation needed here...
 
 ### Local H2 database configuration (under src/main/resources/database/)
 1. Under src/main/resources/database/, copy database.example.properties to database.properties
@@ -37,8 +38,10 @@ Note: you can swap out local databases very easily, but the current configuratio
 
 ## Running
 
+By default the scripts will use Amazon/AWS ("aws") as the cloud provider; however, you can pass in the provider to override the default.  e.g. provider=google ./scripts/<script_name>
+
 ### Run standalone client REPL.
-* `scripts/repl.sh `
+* `scripts/repl.sh `  or `provider=google scripts/repl.sh`  <p/>
 REPL usage examples:
 <pre>
 CloudStore> --help 
@@ -54,7 +57,7 @@ CloudStore> --delete LOCAL_ID
 ####For additional REPL usage/examples: [here](docs/repl_usage.md) 
 
 ### Startup the local Cloudstore app with skeleton REST endpoints, simple/crappy HTML page, and client REPL.
-* `scripts/boot_dev.sh `
+* `scripts/boot.sh ` or `provider=google scripts/boot.sh`
 <pre>
 ...
 [main] - [cwd.cs.CloudStoreApp]- Started StoreItApp in 25.299 seconds (JVM running for 25.552)

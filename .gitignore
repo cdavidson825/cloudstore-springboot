@@ -3,5 +3,5 @@
 
 /src/main/resources/database/database.properties
 /src/main/resources/cloud/cloud.properties
-
+/src/main/resources/cloud/google_oauth2.json
 

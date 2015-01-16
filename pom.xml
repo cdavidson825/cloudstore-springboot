@@ -106,8 +106,23 @@
 	     <groupId>com.amazonaws</groupId>
 	     <artifactId>aws-java-sdk-s3</artifactId>
 	     <version>${aws-java-sdk-s3.version}</version>
-      </dependency> 
-           
+      </dependency>
+      <dependency>
+         <groupId>com.google.appengine.tools</groupId>
+         <artifactId>appengine-gcs-client</artifactId>
+         <version>RELEASE</version>
+     </dependency>
+     <dependency>
+	    <groupId>com.google.api-client</groupId>
+	     <artifactId>google-api-client-java6</artifactId>
+	     <version>1.19.1</version>
+      </dependency>
+      <dependency>
+	    <groupId>com.google.oauth-client</groupId>
+	    <artifactId>google-oauth-client-jetty</artifactId>
+	    <version>1.11.0-beta</version>
+      </dependency>
+            
     </dependencies>
 
     <build>

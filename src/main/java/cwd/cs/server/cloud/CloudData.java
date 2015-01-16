@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * This class encapsulates the content being stored or retrieved from the Cloud
  * storage. This includes the key (String), the binary content (byte[]), as well
- * as associated metadata (Map<String, String>) to be stored.
+ * as associated metadata (Map<String, String>) to be stored/retrieved.
  */
 public class CloudData
 {
