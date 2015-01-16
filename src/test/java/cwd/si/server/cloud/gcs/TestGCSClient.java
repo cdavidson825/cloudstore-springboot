@@ -64,6 +64,14 @@ public class TestGCSClient
         }
     }
     
+    @Test
+    @Ignore
+    public void testSaveData()
+    {
+        CloudData cloudData = new CloudData("my_key2", "This is the fileToSave".getBytes(), null);
+        String result = client.saveData(cloudData);
+        System.out.println("Result = " + result);
+    }
     
     
 }

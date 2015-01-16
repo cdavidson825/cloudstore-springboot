@@ -14,6 +14,7 @@ import com.google.api.client.http.InputStreamContent;
 import com.google.api.services.storage.Storage;
 import com.google.api.services.storage.model.Objects;
 import com.google.api.services.storage.model.StorageObject;
+import com.google.common.collect.ImmutableMap;
 
 import cwd.cs.server.cloud.CloudData;
 import cwd.cs.server.cloud.CloudService;
@@ -116,6 +117,8 @@ public class GCSClient implements CloudService
         String returnString = "unknown";
         try
         {
+            objectMetadata = new StorageObject().setName(data.getKey())
+                    .setMetadata(ImmutableMap.of("key1", "value1", "key2", "value2")).setContentDisposition("attachment");
             Storage.Objects.Insert insertObject =
                     storage.objects().insert(gcsConfig.getBucketName(), objectMetadata,
                             mediaContent);
