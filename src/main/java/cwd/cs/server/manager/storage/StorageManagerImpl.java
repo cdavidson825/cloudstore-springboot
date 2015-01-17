@@ -97,7 +97,7 @@ public class StorageManagerImpl extends ServiceManager implements StorageManager
 
     /*
      * Method to create a StorageData object based on the input key and byte[] data content. The
-     * StorageData object contains the CDNData object to be stored in the cloud as well as the
+     * StorageData object contains the CloudData object to be stored in the cloud as well as the
      * StorageMetadata to be stored locally.
      */
     private StorageData createStorageData(String key, byte[] data)
@@ -112,6 +112,7 @@ public class StorageManagerImpl extends ServiceManager implements StorageManager
             storageMetadata.setOwner(this.getUserCredentials().getUserId());
             storageMetadata.setInternalId(key);
             storageMetadata.setExternalId(externalId.toString());
+            storageMetadata.setCloudProvider(cloudService.getCloudProvider());
 
             log.info("Generating internal hash.");
             String sha1InternalHash = HashUtil.generateSHA1HashCode(data);

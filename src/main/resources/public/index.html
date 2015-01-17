@@ -9,10 +9,19 @@
 		<tr>
 			<td>
 				<fieldset>
-					<legend>Get All local metadata</legend>
+					<legend>Get All Local Metadata</legend>
 					<form action="/cloudstore/" method="post">
 						<p />
-						<input type="submit" value="Get ALL metadata" />
+						<input type="submit" value="Get ALL Local Metadata" />
+					</form>
+				</fieldset>
+			</td>
+			<td>
+				<fieldset>
+					<legend>Get All Cloud Metadata</legend>
+					<form action="/cloudstore/cloud_keys" method="post">
+						<p />
+						<input type="submit" value="Get ALL Cloud Metadata" />
 					</form>
 				</fieldset>
 			</td>
@@ -20,20 +29,32 @@
 		<tr>
 			<td>
 				<fieldset>
-					<legend>Get local metadata</legend>
+					<legend>Get Local Metadata</legend>
 					<form action="/cloudstore/get_meta" method="post">
 						<p>
 							Get metadata for local identifier:<input type="text"
 								name="internalId" size="50" />
 						</p>
-						<input type="submit" value="Get metadata" />
+						<input type="submit" value="Get Local Metadata" />
+					</form>
+				</fieldset>
+			</td>
+			<td>
+				<fieldset>
+					<legend>Get Cloud Metadata</legend>
+					<form action="/cloudstore/get_cloud_meta" method="post">
+						<p>
+							Get Cloud metadata for Cloud identifier:<input type="text"
+								name="cloudKey" size="50" />
+						</p>
+						<input type="submit" value="Get Cloud Metadata" />
 					</form>
 				</fieldset>
 			</td>
 		</tr>
 		<tr>
 			<td><fieldset>
-					<legend>Save Local File</legend>
+					<legend>Save Local File to Cloud storage</legend>
 					<form action="/cloudstore/save" method="post"
 						enctype="multipart/form-data">
 						<p>
@@ -44,14 +65,12 @@
 							Local identifier to use when saving file: <input type="text"
 								name="internalId" size="50" />
 						</p>
-						<input type="submit" value="Save Object" />
+						<input type="submit" value="Save File to Cloud" />
 					</form>
 				</fieldset></td>
-		</tr>
-		<tr>
 			<td>
 				<fieldset>
-					<legend>Retrieve Cloud object</legend>
+					<legend>Retrieve Cloud File to Local storage</legend>
 					<form action="/cloudstore/get" method="post">
 						<p>
 							Retrieve Cloud object with local identifier: <input type="text"
@@ -60,7 +79,7 @@
 						<p>
 							Save local file as: <input type="text" name="saveAs" size="50" />
 						</p>
-						<input type="submit" value="Get Object" />
+						<input type="submit" value="Get Cloud File" />
 					</form>
 				</fieldset>
 			</td>

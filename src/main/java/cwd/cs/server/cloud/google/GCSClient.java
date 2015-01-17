@@ -2,6 +2,7 @@ package cwd.cs.server.cloud.google;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +15,6 @@ import com.google.api.client.http.InputStreamContent;
 import com.google.api.services.storage.Storage;
 import com.google.api.services.storage.model.Objects;
 import com.google.api.services.storage.model.StorageObject;
-import com.google.common.collect.ImmutableMap;
 
 import cwd.cs.server.cloud.CloudData;
 import cwd.cs.server.cloud.CloudService;
@@ -71,6 +71,8 @@ public class GCSClient implements CloudService
     @Override
     public Map<String, String> getMetadata(String key)
     {
+        log.debug("getMetadata called for " + key);
+
         Map<String, String> metadata = new HashMap<String, String>();
         try
         {
@@ -88,6 +90,8 @@ public class GCSClient implements CloudService
     @Override
     public CloudData getData(String key)
     {
+        log.debug("getData called for " + key);
+
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         CloudData cloudData = null;
@@ -110,20 +114,22 @@ public class GCSClient implements CloudService
     @Override
     public String saveData(CloudData data)
     {
+        log.debug("saveData called for " + data);
+
         StorageObject objectMetadata = null;
         InputStreamContent mediaContent =
-                new InputStreamContent("application/octet-stream", new ByteArrayInputStream(
+                new InputStreamContent("binary/octet-stream", new ByteArrayInputStream(
                         data.getData()));
         String returnString = "unknown";
         try
         {
-            objectMetadata = new StorageObject().setName(data.getKey())
-                    .setMetadata(ImmutableMap.of("key1", "value1", "key2", "value2")).setContentDisposition("attachment");
+
+            objectMetadata = new StorageObject().setName(data.getKey());
             Storage.Objects.Insert insertObject =
                     storage.objects().insert(gcsConfig.getBucketName(), objectMetadata,
                             mediaContent);
             insertObject.execute();
-            returnString = insertObject.getName();
+            returnString = insertObject.getBucket();
         }
         catch (Exception e)
         {
@@ -136,8 +142,27 @@ public class GCSClient implements CloudService
     @Override
     public boolean deleteData(String key)
     {
-        log.warn("DELETE Not implemented yet...");
-        return false;
+        boolean deleted = false;
+        log.debug("deleteData called for " + key);
+
+        try
+        {
+            Storage.Objects.Delete deleteObject =
+                    storage.objects().delete(gcsConfig.getBucketName(), key);
+            deleteObject.execute();
+            deleted = true;
+        }
+        catch (IOException e)
+        {
+            log.error("Caught Exception deleting data for key " + key, e);
+        }
+        return deleted;
+    }
+
+    @Override
+    public String getCloudProvider()
+    {
+        return "GOOGLE";
     }
 
 

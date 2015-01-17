@@ -54,4 +54,6 @@ public interface CloudService
      */
     public boolean deleteData(String key);
     
+    public String getCloudProvider();
+    
 }

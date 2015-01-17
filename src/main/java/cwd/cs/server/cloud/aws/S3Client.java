@@ -142,7 +142,7 @@ public class S3Client implements CloudService
     public String saveData(CloudData data)
     {
         String dataLocation = null;
-        log.debug("updateData called for " + data);
+        log.debug("saveData called for " + data);
         if (data != null)
         {
             ObjectMetadata metadata = new ObjectMetadata();
@@ -163,6 +163,7 @@ public class S3Client implements CloudService
     public boolean deleteData(String key)
     {
         boolean isDeleted = false;
+        log.debug("deleteData called for " + key);
 
         if (key != null)
         {
@@ -174,6 +175,12 @@ public class S3Client implements CloudService
         }
 
         return isDeleted;
+    }
+    
+    @Override
+    public String getCloudProvider()
+    {
+        return "AMAZON";
     }
 
 }

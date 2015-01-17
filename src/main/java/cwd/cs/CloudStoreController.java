@@ -3,6 +3,7 @@ package cwd.cs;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,11 +38,25 @@ public class CloudStoreController
         return (metadataRepo.findAll());
     }
 
+    @RequestMapping(value = "/cloud_keys", method =
+    {RequestMethod.GET, RequestMethod.POST})
+    public List<String> listAllCloud()
+    {
+        return (retrievalManager.getCloudKeys());
+    }
+    
     @RequestMapping(value = "/get_meta", method =
     {RequestMethod.GET, RequestMethod.POST})
     public StorageMetadata getByInternalIdPost(@RequestParam String internalId)
     {
         return (getByInternalId(internalId));
+    }
+    
+    @RequestMapping(value = "/get_cloud_meta", method =
+    {RequestMethod.GET, RequestMethod.POST})
+    public Map<String,String> getCloudMetadata(@RequestParam String cloudKey)
+    {
+        return (retrievalManager.getCloudMetadata(cloudKey));
     }
 
     @RequestMapping(value = "/get_meta/{internalId}", method = RequestMethod.GET)

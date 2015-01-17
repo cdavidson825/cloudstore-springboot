@@ -60,6 +60,10 @@ CloudStore> --delete LOCAL_ID
 * `scripts/boot.sh ` or `provider=google scripts/boot.sh`
 <pre>
 ...
+#########################################################
+The Active Spring Profile will be: dev,aws
+#########################################################
+...
 [main] - [cwd.cs.CloudStoreApp]- Started StoreItApp in 25.299 seconds (JVM running for 25.552)
 CloudStore>
 </pre>

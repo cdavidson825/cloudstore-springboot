@@ -31,6 +31,8 @@ public class StorageMetadata
     @Column
     private String externalContainer;
     @Column
+    private String cloudProvider;
+    @Column
     private String internalHashCode;
     @Column
     private String externalHashCode;
@@ -163,6 +165,15 @@ public class StorageMetadata
         this.isEncrypted = isEncrypted;
     }
 
+    public void setCloudProvider(String provider)
+    {
+        this.cloudProvider = provider;
+    }
+    
+    public String getCloudProvider()
+    {
+        return cloudProvider;
+    }
     /**
      * Method to update the appropriate StorageMetadata values based on the input StorageMetadata object.
      * @param metadata
@@ -177,16 +188,18 @@ public class StorageMetadata
         setOwner(metadata.getOwner());
         setIsCompressed(metadata.getIsCompressed());
         setIsEncrypted(metadata.getIsEncrypted());
+        setCloudProvider(metadata.getCloudProvider());
         setLastModifiedDate(new Timestamp(System.currentTimeMillis()));
         
     }
     public String summary()
     {
         return(String.format(
-                "dbId: %s -- InternalID: %s, ExternalContainer: %s, ExternalID: %s",
+                "dbId: %s -- InternalID: %s, Provider: %s, ExternalContainer: %s, ExternalID: %s",
                 String.valueOf(getSmId()), getInternalId(),
-                getExternalContainer(), getExternalId()));
+                getCloudProvider(),getExternalContainer(), getExternalId()));
     }
+    
 
     @Override
     public String toString()
@@ -196,6 +209,8 @@ public class StorageMetadata
         builder.append(createDate);
         builder.append("\nsmId=");
         builder.append(smId);
+        builder.append("\ncloudProvider=");
+        builder.append(cloudProvider);
         builder.append("\nexternalContainer=");
         builder.append(externalContainer);
         builder.append("\nexternalId=");

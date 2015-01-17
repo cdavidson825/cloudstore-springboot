@@ -30,6 +30,12 @@ public class MockCloudService implements CloudService
     {
         return "MockDataSaved";
     }
+    
+    @Override
+    public String getCloudProvider()
+    {
+        return "MockedCloudProvider";
+    }
 
     @Override
     public boolean deleteData(String key)
