@@ -1,6 +1,10 @@
 #!/bin/bash
 
-mvn clean package 
+
+SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+ROOT_DIR=${SCRIPT_DIR}/..
+
+(cd ${ROOT_DIR} && mvn clean package) 
 
 # if build failed, exit with error.
 if [[ $? != 0 ]] ; then
@@ -8,7 +12,7 @@ if [[ $? != 0 ]] ; then
   exit 1
 fi
 
-SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
 source ${SCRIPT_DIR}/env.sh
 
-java -Dspring.profiles.active="${profile}" -jar target/cloudstore-sb*.jar
+java -Dspring.profiles.active="${profile}" -jar ${ROOT_DIR}/target/cloudstore-sb*.jar

@@ -3,29 +3,31 @@
 ## Overview
 Cloudstore is a SpringBoot demo app that allows a client/user to store data (blobs) in Amazon S3, Google Cloud Storage, and coming soon Microsoft Azure.  The data stored in the Cloud provider (Amazon/Google) is encrypted with crypto info stored in a local database (currently H2).  In addition to crypto info, the local database also stores the internal & external identifiers, hash codes validation, compression, etc. Cloudstore provides simple CRUD operations to data stored in the cloud provider via a client REPL and a skeleton REST interface with a very basic html page.
 
-### Known Issues ( https://github.com/cdavidson825/cloudstore-springboot/issues/ )
-* Storage in Microsoft Azure not implemented yet. (http://azure.microsoft.com/en-us/documentation/articles/storage-java-how-to-use-blob-storage/) Issue #7
-* The REPL doesn't support up-arrow command history.  Issue #4
-* Fix scripts path issue -- currently must run scripts as ./script/<script_name> do to relative path of pom and target. Issue #6
-
-### Why not production ready (yet)?
+## Known issues/future improvements ( https://github.com/cdavidson825/cloudstore-springboot/issues/ )
+* The local database is not encrypted.  Issue #1
 * The UserCredentials are very simplistic and are just enough to make this thing work for a local app. Issue #2
 * The crypto algorithm (128-bit ASE) is not industry strength. Issue #3
-* The local database is not encrypted.  Issue #1
+* The REPL doesn't support up-arrow command history.  Issue #4
+* Storage in Microsoft Azure not implemented yet. (http://azure.microsoft.com/en-us/documentation/articles/storage-java-how-to-use-blob-storage/) Issue #7
 
 ## Prerequisites
-### Local H2 database (for local crypto key info).
-* Download H2 from: http://www.h2database.com/html/main.html
-* set H2_HOME to the root installed H2 directory ($H2_HOME is used by script below).
-* H2 Configuration info provided below. 
-* (optional) use `scripts/start_h2_db.sh` to start up the H2 database.
+* Java 8
+* Maven 3
+* Amazon AWS account with IAM privs to S3 (default cloud provider) -- https://console.aws.amazon.com/console/home
+* Google Cloud Storage (optional) -- https://console.developers.google.com/project
+* Local databasefor local crypto key/info (currently configured for H2)
+  * Download H2 from: http://www.h2database.com/html/main.html
+  * set H2_HOME to the root installed H2 directory ($H2_HOME is used by script below).
+  * H2 Configuration info provided below. 
+  * (optional) use `scripts/start_h2_db.sh` to start up the H2 database.
 
 ## Configuring 
-In order to run Cloudstore, you must copy the cloud and database properties file in place.  These properties have been excluded from the Git repo, but example.properties have been checked in for quick configuration.
+In order to run Cloudstore, you must copy the cloud and database properties file in place.  These properties have been excluded from the Git repo, but database.example.properties, cloud.properties, and optional google_oauth2.example.properties have been checked in for quick configuration.
+
 ### Cloud configuration (under src/main/resources/cloud/)
-1. Under src/main/resources/cloud/, copy cloud.example.properties to cloud.properties and google_oauth2.example.json to google_oauth2.json
+1. Under src/main/resources/cloud/, copy cloud.example.properties to cloud.properties and (optional) google_oauth2.example.json to google_oauth2.json
 2. In cloud.properties, update the Amazon/Google key info for your environment.  These properties values are loaded into the main src/main/resources/cloud/cloud.xml spring configuration file.
-3. In google_oauth2.json, update the client_id and client_secret params for your Google Cloud Storage instance.  More documentation needed here...
+3. (optional if using google storage) In google_oauth2.json, update the client_id and client_secret params for your Google Cloud Storage instance.  More documentation needed here...
 
 ### Local H2 database configuration (under src/main/resources/database/)
 1. Under src/main/resources/database/, copy database.example.properties to database.properties
@@ -38,7 +40,7 @@ Note: you can swap out local databases very easily, but the current configuratio
 
 ## Running
 
-By default the scripts will use Amazon/AWS ("aws") as the cloud provider; however, you can pass in the provider to override the default.  e.g. provider=google ./scripts/<script_name>
+By default the scripts will use Amazon/AWS ("aws") as the cloud storage provider; however, you can pass in the "provider" to override the default.  e.g. provider=google ./scripts/<script_name>
 
 ### Run standalone client REPL.
 * `scripts/repl.sh `  or `provider=google scripts/repl.sh`  <p/>
