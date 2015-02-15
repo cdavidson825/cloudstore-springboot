@@ -11,19 +11,14 @@ if [[ $? != 0 ]] ; then
 fi
 
 source ${SCRIPT_DIR}/env.sh
+export TARGET_DIR=${ROOT_DIR}/target
+export LIB_DIR=${TARGET_DIR}/lib
+export CLOUDSTORE_JAR=$(ls -1 ${TARGET_DIR}/*.original)
 
-#############################################################################################
-###Super lame that I need to explode the springboot jar because it embeds its jars under lib/
-export EXPLODE_DIR=${ROOT_DIR}/target/explode
-
-mkdir ${EXPLODE_DIR} 2> /dev/null
-rm -rf ${EXPLODE_DIR}/*
-(cd ${EXPLODE_DIR} && jar -xvf ../cloudstore-sb*.jar > /dev/null )
-
-#############################################################################################
+echo "JAR = ${CLOUDSTORE_JAR}"
 
 SPRING_OPTS="-Dspring.profiles.active=${profile} -Dspring.jpa.hibernate.ddl-auto=validate -Dspring.jpa.show-sql=true -Dspring.jpa.database=H2"
 
-java -cp "${EXPLODE_DIR}/lib/*":${EXPLODE_DIR}/. ${SPRING_OPTS} cwd.cs.client.ClientDriver "$@"
+java -cp "${CLOUDSTORE_JAR}:${LIB_DIR}/*" ${SPRING_OPTS} cwd.cs.client.ClientDriver "$@"
 
 
